@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -le 1 ]; then
-        echo "Usage: $0 [-l] <local listener port 1> <local listener port 2>"
+if [ "$#" -le 3 ]; then
+        echo "Usage: $0 [-l] <host 1> <port 1> <host 2> <port 2>"
         echo "   Creates a double-listener proxy on the given ports."
         echo "  -l:     Listens in on all communication."
         exit
@@ -28,13 +28,15 @@ do
 	if $LISTEN; then
 		sed 's/^/ => /' <"$SENT" &
 		sed 's/^/<=  /' <"$RCVD" &
-		nc -lvnp $2 <"$BACK" | tee "$SENT" | nc -lvnp $3 | tee "$RCVD" >"$BACK"
+		nc $2 $3 <"$BACK" | tee "$SENT" | nc $4 $5 | tee "$RCVD" >"$BACK"
 	else
-		nc -lvnp $1 < "$BACK" | nc -lvnp $2 > "$BACK"
+		nc $1 $2 < "$BACK" | nc $3 $4 > "$BACK"
 	fi
 
-	if [ $? -ne 0 ]; then
-	    exit
-	fi
+        if [ $? -ne 0 ]; then
+            exit
+        fi
 
 done
+
+
