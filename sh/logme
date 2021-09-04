@@ -1,0 +1,24 @@
+#!/bin/bash
+
+d=`date --utc +%Y%m%d-%H%M%S`
+
+if [ -z $1 ]
+then
+	echo "Usage: $0 <targetdir>"
+	echo "       Puts logfile into $HOME/logs/<targetdir>"
+else
+	if  [ -f $HOME/logs/$1 ];
+	then
+		echo "ERROR: $HOME/logs/$1 is a regular file."
+		exit
+	fi
+
+	if ! [ -d $HOME/logs/$1 ];
+	then
+ 		mkdir $HOME/logs/$1
+	fi
+
+	/bin/bash -i -v | tee $HOME/logs/$1/d
+
+fi
+

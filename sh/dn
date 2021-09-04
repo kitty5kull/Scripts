@@ -1,0 +1,3 @@
+#!/bin/bash
+dotnet `find /media/shared/netcore |grep -m 1 -e .*/bin/Release/.*/$1.dll` ${@:2}
+

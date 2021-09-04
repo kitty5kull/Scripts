@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/opt/gobuster/gobuster dir -u $1 -w /usr/share/wordlists/meta.txt -t 1
+
