@@ -1,7 +1,0 @@
-#!/bin/bash
-
-for file in $(find `pwd`/* -type f)
-do
-	cat $file
-done
-

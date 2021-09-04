@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#felipesi - 2017
-#bugbuster - 2020
-
 if [ $# != 2 ]; then
 	echo "USAGE: $0 imagem.jpg wordlist.txt"
 else
@@ -12,12 +9,12 @@ i=0
 
 echo "Successfully loaded $lines words from word list."
 
-for senha in $(cat $2); do
-	steghide extract -sf $1 -p $senha -xf output.txt &> /dev/null
+for pass in $(cat $2); do
+	steghide extract -sf $1 -p $pass -xf output.txt &> /dev/null
 	if [ $? == 0 ]; then
 		echo
 		echo
-		echo "SUCESS - $senha"
+		echo "SUCESS - $pass"
 		echo "FILE: output.txt"
 		break
 	else

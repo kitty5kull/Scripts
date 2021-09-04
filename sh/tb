@@ -1,3 +1,0 @@
-#!/bin/bash
-
-#/bin/bash | tee ~/log/`date -u +%Y-%m-%d_%H-%M-%S`
