@@ -8,4 +8,4 @@ then
 	exit
 fi
 
-sudo dirsearch -u "$1" -o "$2" --format=simple --wordlist=/usr/share/wordlists/dirb/common.txt -e html,htm,php,asp,aspx,js,txt,old,bak,cfg,conf,jsp,do,action,zip,tar,gz -f -r -R 3 "{$*:3}"
+sudo -E dirsearch -u "$1" -o "$2" --format=simple --wordlist=/usr/share/wordlists/dirb/common.txt -e html,htm,php,asp,aspx,js,txt,old,bak,cfg,conf,jsp,do,action,zip,tar,gz -f -r -R 3 "{$*:3}"
