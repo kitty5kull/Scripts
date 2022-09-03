@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir $2
+mkdir $2-rem
+sudo mount -t cifs -o username=$3 //$1/$2 `pwd`/$2-rem
+cp $2-rem/* $2 -rf
+sudo umount `pwd`/$2-rem
+rmdir $2-rem

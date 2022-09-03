@@ -10,12 +10,8 @@ browsercmd="/usr/bin/chromium %U"
 if [ "$1" = "" ]
 then
 
-	echo "Usage: $0 <base-path> <host>"
+	echo "Usage: $0 [<base-path>] <host>"
 	exit
-
-else
-
-	path="$1"
 
 fi
 
@@ -23,11 +19,12 @@ fi
 if [ "$2" = "" ]
 then
 
-	echo "Usage: $0 <base-path> <host>"
-	exit
+	path=`pwd`
+	host="$1"
 	
 else
 
+	path="$1"
 	host="$2"
 	
 fi

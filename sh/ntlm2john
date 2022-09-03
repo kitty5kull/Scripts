@@ -1,0 +1,3 @@
+#!/bin/sh
+
+grep ':' hashes.out | cut -d ':' -f 4 | sort | uniq
