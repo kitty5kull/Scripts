@@ -1,0 +1,18 @@
+#!/bin/python
+
+from pwn import *
+import argparse
+
+parser = argparse.ArgumentParser(
+                    prog = 'elfsearch',
+                    description = 'Searches the given program for the given string.')
+
+parser.add_argument('filename')
+parser.add_argument('string')
+
+args = parser.parse_args()
+context.log_level = 'error'
+binary = ELF(args.filename)
+
+for hit in binary.search(args.string.encode()):
+    print(hex(hit))
