@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-editor="mousepad"
+editor="kate"
 pingprefix="ping -c 4"
 browsercmd="/usr/bin/chromium %U"
 

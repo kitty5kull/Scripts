@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$#" -ne 3 ]; then
+	echo "$0 <IP-Address> <Share-Name> <Username>"
+	exit
+fi
+
 mkdir $2
 mkdir $2-rem
 sudo mount -t cifs -o username=$3 //$1/$2 `pwd`/$2-rem
