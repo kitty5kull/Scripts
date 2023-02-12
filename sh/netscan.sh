@@ -122,4 +122,4 @@ echo "================   END OF NETWORKING REPORT FOR {$host}   ================
 echo
 echo "Scan finished."
 
-$editor netscan_report.txt &
+$editor netscan_report.txt 2>/dev/null &

