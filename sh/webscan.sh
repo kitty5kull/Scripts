@@ -14,8 +14,8 @@ wget $1/sitemap.xml
 
 kate robots.txt security.txt sitemap.xml 2>/dev/null &
 
-/opt/gobuster/gobuster dir -e -u $1 -k -w ~/wordlists/dirb/big.txt | tee gobuster_dir_big.txt
-/opt/gobuster/gobuster vhost -u $1 -k -w ~/wordlists/Discovery/DNS/subdomains-top1million-20000.txt | tee gobuster_vhost_20k.txt
+gobuster dir -e -u $1 -k -w ~/wordlists/dirb/big.txt | tee gobuster_dir_big.txt
+gobuster vhost -u $1 -k -w ~/wordlists/Discovery/DNS/subdomains-top1million-20000.txt | tee gobuster_vhost_20k.txt
 dirsearch.sh $1 `pwd`/dirsearch.txt
 
 cewl --with-numbers -w `pwd`/cewl.txt $1
@@ -25,7 +25,9 @@ sudo dirsearch -u "$1" -o `pwd`/dirsearch_cewl.txt --format=plain --wordlist=`pw
 
 cat dir*.txt | grep "^200" | cut -b 14- > direarch_clean.txt
 
-cat gobuster_dir_big.txt dirsearch.txt dirsearch_cewl.txt > webscan.txt
+/opt/nikto/program/nikto.pl -h $1 | tee nikto.txt
+
+cat gobuster_dir_big.txt dirsearch.txt dirsearch_cewl.txt nikto.txt > webscan.txt
 kate webscan.txt 2>/dev/null &
 
 cd ..
