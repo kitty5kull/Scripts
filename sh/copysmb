@@ -1,13 +1,28 @@
 #!/bin/bash
 
-if [ "$#" -ne 3 ]; then
-	echo "$0 <IP-Address> <Share-Name> <Username>"
-	exit
+if [ "$#" -lt 4 ]; then
+        password=
+else
+        password=$4
 fi
+
+if [ "$#" -lt 3 ]; then
+	echo "$0 <IP-Address> <Share-Name> <Username> [<password>]"
+	exit 1
+fi
+
+if [ "$#" -gt 4 ]; then
+	echo "$0 <IP-Address> <Share-Name> <Username> [<password>]"
+	exit 2
+fi
+
+cmd="sudo mount -t cifs -o username=$3 -o password=$password //$1/$2 `pwd`/$2-rem"
 
 mkdir $2
 mkdir $2-rem
-sudo mount -t cifs -o username=$3 //$1/$2 `pwd`/$2-rem
+
+$cmd
+
 cp $2-rem/* $2 -rf
 sudo umount `pwd`/$2-rem
 rmdir $2-rem

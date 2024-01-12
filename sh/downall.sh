@@ -1,9 +1,10 @@
 i=1
-mkdir dl
+mkdir -p dl
 
 while read -r line
 do
-    wget "$line" -O dl/$i.txt 2>/dev/null
+	echo "Downloading $line into dl/$i.txt ..."
+    wget "$line" --no-check-certificate -O dl/$i.txt 2>/dev/null
     ((i++))
 done
 
